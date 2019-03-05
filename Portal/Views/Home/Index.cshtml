@@ -1,0 +1,242 @@
+﻿@using Portal.Extensions
+@{
+    ViewData["Title"] = "Aibol2 企业管理软件，前后端系统开发专家";
+}
+
+@section Scripts
+    {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var b = $('#contact_panel button'), ing = '发送中...', ed = '发送信息给我们';
+            b.on('click',
+                function () {
+                    if (b.innerText == ing) return;
+                    var r = $('#contact_resp'),
+                        p = $('#contact_panel'),
+                        n = p.find('[name=name]').val(),
+                        c = p.find('[name=contact]').val().trim(),
+                        q = p.find('[name=request]').val().trim();
+                    if (!c) {
+                        alert('请输入您的联系方式');
+                        return;
+                    }
+                    if (!q) {
+                        alert('请输入您的需求内容');
+                        return;
+                    }
+
+                    b.innerText = ing;
+                    $.ajax({
+                        url: '/api/request',
+                        type: 'POST',
+                        data: { name: n, contact: c, request: q },
+                        success: function () {
+                            r.attr('class', 'm-t-10 text-success').text('您的需求我们已收到，客服人员会及时联系您。');
+                            p.find('input[name],textarea[name]').val('');
+                            b.innerText = ed;
+                        },
+                        error: function (resp) {
+                            r.attr('class', 'm-t-10 text-danger').text(resp.responseText);
+                            b.innerText = ed;
+                        }
+                    });
+                });
+        })
+    </script>
+}
+<div id="platform" class="content has-bg home">
+    <div class="content-bg">
+        <img src="~/img/home-bg.jpg" alt="Home" />
+    </div>
+    <div class="container home-content">
+        <h1>软件系统 快速开发平台</h1>
+        <h3>企业级软件系统开发和集成、移动端App、公众号和小程序</h3>
+        <p>
+            @{
+                var years = DateTime.Now.Year - 2010;
+                var desc = $"{years.ToChinese()}年企业软件开发经历，数百套软件产品成功上线运行";
+            }
+            @desc<br />
+            可以深入了解Aibol2的 <a href="#">少代码开发平台</a>，也可以查看 <a href="#product">已发布产品</a>
+        </p>
+        <a asp-controller="case" asp-action="develop" class="btn btn-theme">了解案例</a>
+        <a href="#contact" class="btn btn-outline">免费咨询</a><br />
+        <br />
+        或者 <a href="https://pass.aibol.com/account/register?clientid=aibol2_portal"> 注册 </a> 您的AI+账号
+    </div>
+</div>
+
+<div id="product" class="content bg-black-darker has-bg" data-scrollview="true">
+    <div class="content-bg">
+        <img src="../img/milestone-bg.jpg" alt="Milestone" />
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-sm-3 milestone-col">
+                <div class="milestone">
+                    <div class="number" data-animation="true" data-animation-type="number" data-final-number="1292">1,292</div>
+                    <div class="title">Themes & Template</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-3 milestone-col">
+                <div class="milestone">
+                    <div class="number" data-animation="true" data-animation-type="number" data-final-number="9039">9,039</div>
+                    <div class="title">Registered Members</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-3 milestone-col">
+                <div class="milestone">
+                    <div class="number" data-animation="true" data-animation-type="number" data-final-number="89291">89,291</div>
+                    <div class="title">Items Sold</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-3 milestone-col">
+                <div class="milestone">
+                    <div class="number" data-animation="true" data-animation-type="number" data-final-number="129">129</div>
+                    <div class="title">Theme Authors</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="contact" class="content bg-silver-lighter" data-scrollview="true">
+    <div class="container thin">
+        <h2 class="content-title">联系我们</h2>
+        <p class="content-desc">
+            邮箱和座机服务时间：工作日 上午8:30 - 下午5:30 <br />
+            手机号服务时间： 7x24小时
+        </p>
+        <div class="row">
+            <div class="col-md-6" data-animation="true" data-animation-type="fadeInLeft">
+                <h3>如果您有如下需求，请随时联系我们</h3>
+                <p>
+                    <ol>
+                        <li>企业级软件系统定制化开发</li>
+                        <li>多系统集成</li>
+                        <li>移动端App开发</li>
+                        <li>微信/支付宝小程序、公众号</li>
+                    </ol>
+                </p>
+                <p>
+                    <strong>上海领承智能科技有限公司</strong><br />
+                    弘基商业广场文益街99弄16号<br />
+                    上海，浦东新区<br />
+                    座机号: (021) 5816-0611<br />
+                </p>
+                <p>
+                    <strong>商务总监 陈先生(Shawn Chen)</strong><br />
+                    <span class="phone">手机号：(+86) 135 2415 5084</span><br />
+                    邮箱：<a href="mailto:cym@aibol.com">cym@aibol.com</a>
+                </p>
+            </div>
+            <div class="col-md-6 form-col" data-animation="true" data-animation-type="fadeInRight">
+                <form class="form-horizontal" id="contact_panel">
+                    <div class="form-group">
+                        <label class="control-label col-md-3">怎么称呼您？ <span class="text-theme">*</span></label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="name" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">您的联系方式？ <span class="text-theme">*</span></label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="contact" placeholder="手机号或邮箱" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">您的需求？ <span class="text-theme">*</span></label>
+                        <div class="col-md-9">
+                            <textarea class="form-control" rows="10" name="request"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3"></label>
+                        <div class="col-md-9 text-left">
+                            <button type="button" class="btn btn-theme btn-block">发送信息给我们</button>
+                            <p id="contact_resp" class="m-t-10"></p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="about" class="content" data-scrollview="true">
+    <div class="container thin" data-animation="true" data-animation-type="fadeInDown">
+        <h2 class="content-title">关于领承</h2>
+        <p class="content-desc">
+            上海市高新技术企业，双软认证企业，诚信经营企业
+        </p>
+        <div class="row">
+            <div class="col-md-4 col-sm-6">
+                <div class="about">
+                    <h3>领承故事</h3>
+                    <p>
+                        2010年由复旦大学投资的创业团队创办的企业，提供企业级稳定的软件系统。
+                        初期以欧美和日本外包业务为主，涉及MRP、ERP、CRM、IOT等，客户包括微软、Facebook、NEC、SONY等。
+                        2012年提供物流行业解决方案，包括仓储管理(WMS)、运输管理(TMS)、货代等软件系统，客户包括台骅集团、腾宏物流、北方物流等。
+                    </p>
+                    <p>
+                        2013年进入发电和供电行业，主要客户包括中电国际集团旗下发电企业和浙江国家电网下属供电公司，
+                        提供生产运营管理系统、移动端巡检、合规控制、客户关系管理等软件系统解决方案。
+                    </p>
+                    <p>
+                        2013年进入新能源汽车行业，为<span class="text-primary">新能源主机厂</span>和<span class="text-primary">充电桩服务商</span>提供软件解决方案，
+                        包括建桩管理系统(安桩系列)、充电桩智能化运营系统、充电站和充电桩集群管理，
+                        主要客户有北汽新能源、江淮汽车、上海EVCard、依威新能源、上海挚达、循道等。
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <h3>服务原则</h3>
+                <div class="about-author">
+                    <div class="quote bg-silver">
+                        <i class="fa fa-quote-left"></i>
+                        <h3>我们的工作多一点,<br /><span>客户的烦恼少一点</span></h3>
+                        <i class="fa fa-quote-right"></i>
+                    </div>
+                    <div class="author">
+                        <div class="image">
+                            <img src="../img/user-1.jpg" alt="Sean Ngu" />
+                        </div>
+                        <div class="info">
+                            Vincent
+                            <small>Product & Service Team</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <h3>经验&案例</h3>
+                <div class="skills">
+                    <div class="skills-name">企业级软件系统开发</div>
+                    <div class="progress progress-striped">
+                        <div class="progress-bar progress-bar-success" style="width: 95%">
+                            <span class="progress-number">9年</span>
+                        </div>
+                    </div>
+                    <div class="skills-name">信息系统集成</div>
+                    <div class="progress progress-striped">
+                        <div class="progress-bar progress-bar-success" style="width: 90%">
+                            <span class="progress-number">8年</span>
+                        </div>
+                    </div>
+                    <div class="skills-name">电力行业软硬件解决方案</div>
+                    <div class="progress progress-striped">
+                        <div class="progress-bar progress-bar-success" style="width: 80%">
+                            <span class="progress-number">6年</span>
+                        </div>
+                    </div>
+                    <div class="skills-name">新能源汽车行业软件解决方案</div>
+                    <div class="progress progress-striped">
+                        <div class="progress-bar progress-bar-success" style="width: 75%">
+                            <span class="progress-number">5年</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

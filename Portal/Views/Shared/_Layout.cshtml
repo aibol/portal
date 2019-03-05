@@ -1,0 +1,161 @@
+﻿<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta content="上海领承智能科技有限公司官方网站, 软件系统开发成本低，效率高" name="description" />
+    <meta content="aibol system, 领承科技" name="author" />
+    <title>
+        @{
+            var title = ViewData["Title"];
+            if (!string.IsNullOrEmpty(title?.ToString()))
+            {
+                title += " - ";
+            }
+            title += "专业企业管理软件开发平台";
+        }
+        @title
+    </title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.css">
+        <link rel="stylesheet" href="~/css/animate.css" />
+        <link rel="stylesheet" href="~/css/style.css" />
+        <link rel="stylesheet" href="~/css/style-responsive.min.css" />
+        <link rel="stylesheet" href="~/css/theme/default.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+        <script src="~/lib/pace/pace.min.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="~/css/animate.min.css" />
+        <link rel="stylesheet" href="~/css/style.min.css" />
+        <link rel="stylesheet" href="~/css/style-responsive.min.css" />
+        <link rel="stylesheet" href="~/css/theme/default.css" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+        <script src="~/lib/pace/pace.min.js"></script>
+    </environment>
+</head>
+<body data-spy="scroll" data-target="#header-navbar" data-offset="51">
+    <partial name="_CookieConsentPartial" />
+    <div id="page-container" class="fade">
+        <div id="header" class="header navbar navbar-transparent navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-navbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="/" class="navbar-brand">
+                        <span class="brand-logo">
+                            <img src="~/img/logo.png" />
+                        </span>
+                        <span class="brand-text">
+                            <span class="text-theme">Aibol System</span> <small>领承科技</small>
+                        </span>
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse" id="header-navbar">
+                    <partial name="_LoginPartial" />
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="javascript:void(0)" data-click="scroll-to-target" data-toggle="dropdown">开发平台 <b class="caret"></b></a>
+                            <ul class="dropdown-menu dropdown-menu-left animated fadeInDown">
+                                <li><a href="/platform/aibol2">Aibol2</a></li>
+                                <li><a href="/platform/sso">统一认证平台</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="javascript:void(0)" data-click="scroll-to-target" data-toggle="dropdown">产品 <b class="caret"></b></a>
+                            <ul class="dropdown-menu dropdown-menu-left animated fadeInDown">
+                                <li><a href="/product/workflow">工作流引擎</a></li>
+                                <li><a href="/product/form">表单设计器</a></li>
+                                <li><a href="/product/report">报表引擎</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="javascript:void(0)" data-click="scroll-to-target" data-toggle="dropdown">行业解决方案<b class="caret"></b></a>
+                            <ul class="dropdown-menu dropdown-menu-left animated fadeInDown">
+                                <li><a href="/solution/nec">新能源汽车</a></li>
+                                <li><a href="/solution/power">发电集团</a></li>
+                                <li><a href="/solution/going">出行</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="javascript:void(0)" data-click="scroll-to-target" data-toggle="dropdown">案例<b class="caret"></b></a>
+                            <ul class="dropdown-menu dropdown-menu-left animated fadeInDown">
+                                <li><a href="/case/develop">开发案例</a></li>
+                                <li><a href="/case/customers">行业客户</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="javascript:void(0)" data-click="scroll-to-target" data-toggle="dropdown">开发资源<b class="caret"></b></a>
+                            <ul class="dropdown-menu dropdown-menu-left animated fadeInDown">
+                                <li><a href="https://doc.aibol.com">文档</a></li>
+                                <li><a href="/resource/frontend">前端模板</a></li>
+                                <li><a href="/resource/backend">后端模板</a></li>
+                                <li><a href="/resource/mobile">移动端模板</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#contact" data-click="scroll-to-target">联系我们</a></li>
+                        <li><a href="#about" data-click="scroll-to-target">关于领承</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        @RenderBody()
+
+        <div id="footer" class="footer">
+            <div class="container">
+                <div class="footer-brand">
+                    <div class="footer-brand-logo">
+                        <img src="~/img/logo_f.png" />
+                    </div>
+                    Aibol System
+                </div>
+                <p>
+                    &copy; 上海领承智能科技有限公司 <a href="http://www.miitbeian.gov.cn">沪ICP备19001409号</a> <br />
+                    @*An admin & front end theme with serious impact. Created by <a href="#">SeanTheme</a>*@
+                </p>
+                @*<p class="social-list">
+                    
+                </p>*@
+            </div>
+        </div>
+    </div>
+
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/lib/jquery-cookie/jquery.cookie.js"></script>
+        <script src="~/lib/scrollMonitor/scrollMonitor.js"></script>
+        <script src="~/js/apps.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="~/lib/jquery-cookie/jquery.cookie.js"></script>
+        <script src="~/lib/scrollMonitor/scrollMonitor.min.js"></script>
+        <script src="~/js/apps.min.js" asp-append-version="true"></script>
+    </environment>
+    <!--[if lt IE 9]>
+        <script src="~/js/crossbrowserjs/html5shiv.js"></script>
+        <script src="~/js/crossbrowserjs/respond.min.js"></script>
+        <script src="~/js/crossbrowserjs/excanvas.min.js"></script>
+    <![endif]-->
+
+    <script>
+        $(document).ready(function () {
+            App.init();
+        });
+    </script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

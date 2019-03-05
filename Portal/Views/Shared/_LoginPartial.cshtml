@@ -1,0 +1,34 @@
+﻿@using Microsoft.Extensions.Configuration
+
+@{
+    var configuration = ViewBag.Configuration as IConfiguration;
+    var domain = configuration.GetSection("Identity:Authority").Value;
+    var clientid = configuration.GetSection("Identity:ClientId").Value;
+}
+
+@if (User.Identity.IsAuthenticated)
+{
+    var claims = User.Claims;
+    var name = claims.Where(t => t.Type == "name").Select(t => t.Value).FirstOrDefault();
+
+    <form asp-area="" asp-page="/account/logout" asp-route-returnUrl="@Url.Action("Index", "Home", new {area = ""})" method="post" id="logoutForm" class="navbar-right">
+        <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown m-r-10">
+                <a href="javascript:void(0)" data-click="scroll-to-target" data-toggle="dropdown">@name <b class="caret"></b></a>
+                <ul class="dropdown-menu dropdown-menu-left animated fadeInDown">
+                    <li><a href="/platform/aibol2">账户信息</a></li>
+                    <li>
+                        <a asp-controller="home" asp-action="logout">退出</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </form>
+}
+else
+{
+    <div class="nav navbar-nav navbar-right text-center login-btn">
+        <a datafld="login" asp-controller="home" asp-action="login" class="btn btn-xs btn-outline m-5">登录系统</a>
+        <a datafld="register" href="@(domain)/account/register?clientid=@clientid" class="btn btn-xs btn-success m-5 m-r-10">注册</a>
+    </div>
+}
