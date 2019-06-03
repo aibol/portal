@@ -33,7 +33,7 @@ namespace Portal.Controllers
 
             var client = new SmtpClient
             {
-                Credentials = new NetworkCredential("noreply@aibol.com", "5WSmReceTn"),
+                Credentials = new NetworkCredential("noreply@aibol.com", "4hBfYxlkrd"),
                 Port = 25,
                 Host = "smtp.ym.163.com",
                 EnableSsl = false
