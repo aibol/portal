@@ -9,13 +9,13 @@
 .navbar-nav .dropdown-menu { font-size: 15px; }
     .navbar-nav .dropdown-menu > li > a { color: #fff; }
 
-.container { width: 100% }
+/*.container { width: 100% }*/
 
-.container.thin { width: 1170px;}
+/*.container.thin { width: 1170px;}
 
 @media (max-width: 1170px) {
     .container.thin { width: 100% }
-}
+}*/
 
 .header.navbar.navbar-small .login-btn a[datafld=login] { color: #2d353c }
 
@@ -148,4 +148,9 @@ ol.indent0 {
             transition-duration: 0s;
         }
 
-
+.navy-line {
+    width: 60px;
+    height: 1px;
+    margin: 20px auto;
+    border-bottom: 2px solid #1ab394;
+}
