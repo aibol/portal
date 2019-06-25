@@ -33,6 +33,10 @@ namespace Portal.Controllers
         {
             return View(new AdminViewModel() { Page = "SolutionList" });
         }
+        public IActionResult SolutionDetail()
+        {
+            return View(new AdminViewModel() { Page = "SolutionList" });
+        }
 
         public IActionResult GetList()
         {

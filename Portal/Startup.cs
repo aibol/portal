@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Portal.Models;
+using UEditorNetCore;
 
 namespace Portal
 {
@@ -28,6 +29,8 @@ namespace Portal
                 options.CheckConsentNeeded = context => false;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
+
+            services.AddUEditorService();
 
             var connectStr = Configuration.GetSection("ConnectStr").Value;
             services.AddDbContext<Db>
