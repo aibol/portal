@@ -58,9 +58,13 @@ namespace Portal.Migrations
                         .IsUnique()
                         .HasFilter("[ProductionId1] IS NOT NULL");
 
-                    b.HasIndex("SolutionItemId");
+                    b.HasIndex("SolutionItemId")
+                        .IsUnique()
+                        .HasFilter("[SolutionItemId] IS NOT NULL");
 
-                    b.HasIndex("SolutionItemId1");
+                    b.HasIndex("SolutionItemId1")
+                        .IsUnique()
+                        .HasFilter("[SolutionItemId1] IS NOT NULL");
 
                     b.ToTable("Posts");
                 });
@@ -164,12 +168,12 @@ namespace Portal.Migrations
                         .HasForeignKey("Portal.Models.Post", "ProductionId1");
 
                     b.HasOne("Portal.Models.SolutionItem")
-                        .WithMany()
-                        .HasForeignKey("SolutionItemId");
+                        .WithOne()
+                        .HasForeignKey("Portal.Models.Post", "SolutionItemId");
 
                     b.HasOne("Portal.Models.SolutionItem", "SolutionItem")
-                        .WithMany("Posts")
-                        .HasForeignKey("SolutionItemId1");
+                        .WithOne("Post")
+                        .HasForeignKey("Portal.Models.Post", "SolutionItemId1");
                 });
 
             modelBuilder.Entity("Portal.Models.SolutionItem", b =>

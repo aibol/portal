@@ -4,6 +4,124 @@
     ViewData["Title"] = "ProductionList";
     var page = "ProductionList";
 }
+    <div id="app">
+        <h2>产品列表</h2>
+        <ul class="nav nav-pills">
+            <li v-bind:class="{active:isNew}" v-on:click="selectNew()" style="cursor: pointer"><a>新增</a></li>
+            <li v-for="item in arr" v-bind:class="{active:production.id==item.id}" v-on:click="selectProduction(item)" style="cursor: pointer"><a>{{item.name}}<span class="badge" v-if="item.isDeleted">已删除</span></a></li>
+        </ul>
+        <br />
+        <input type="text" class="form-control" style="display: inline-block; width: 200px; margin-top: 2px;" v-model="production.name" placeholder="名称" />
+        <input type="text" class="form-control" style="display: inline-block; width: 200px; margin-top: 2px;" v-model="production.sort" placeholder="排序,越大越往前" />
 
-<h2>ProductionList</h2>
+        <br />
+        <br />
+        <script id="editor" type="text/plain" style="width:1024px;height:500px;">
+        </script>
+        <div style="text-align: center; margin-top: 20px;">
+            <button class="btn btn-success btn-lg" style="padding-left: 50px; padding-right: 50px;" v-on:click="sub()">保存</button>
+            <button class="btn btn-danger btn-lg" v-if="!isNew && !production.isDeleted" style="padding-left: 50px; padding-right: 50px;" v-on:click="del()">删除</button>
+            <button class="btn btn-warning btn-lg" v-if="!isNew && production.isDeleted" style="padding-left: 50px; padding-right: 50px;" v-on:click="recover()">恢复</button>
+        </div>
+    </div>
+@section Scripts
+{
 
+    <script>
+        //实例化编辑器
+        //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+        var ue = UE.getEditor('editor');
+
+        $(function() {
+            var app = new Vue({
+                el: "#app",
+                data: {
+                    arr: [],
+                    production: {
+                    },
+                    isNew: true
+                },
+                methods: {
+                    getList: function() {
+                        $.post("/admin/GetProductionList",
+                            {},
+                            function(res) {
+                                if (res.code == 200) {
+                                    app.arr = res.data;
+                                } else {
+                                    alert(res.msg);
+                                }
+                            });
+                    },
+                    getContent: function() {
+                        return UE.getEditor('editor').getContent();
+                    },
+                    setContent: function(content) {
+                        UE.getEditor('editor').setContent(content);
+                    },
+                    selectProduction: function(item) {
+                        this.isNew = false;
+                        this.production = item;
+                        $.post("/admin/GetProductionPost", {id:item.id}, function(res) {
+                            if (res.code == 200) {
+                                app.setContent(res.data);
+                            } else {
+                                alert(res.msg);
+                            }
+                        });
+                    },
+                    selectNew: function() {
+                        this.isNew = true;
+                        this.production = {},
+                            this.setContent("");
+                    },
+                    sub: function() {
+                        this.production.content = this.getContent();
+                        if (this.isNew) {
+                            $.post("/admin/AddProduction",
+                                this.production,
+                                function(res) {
+                                    alert("新增成功");
+                                    app.getList();
+                                });
+                        } else {
+                            $.post("/admin/UpdateProduction",
+                                this.production,
+                                function(res) {
+                                    alert("修改成功");
+                                    app.getList();
+                                });
+                        }
+                    },
+                    del: function() {
+                        if (!confirm("确认删除吗?")) {
+                            return;
+                        }
+                        $.post("/admin/DeleteProduction",
+                            this.production,
+                            function(res) {
+                                alert("删除成功");
+                                app.production.isDeleted = true;
+                                app.getList();
+                            });
+                    },
+                    recover: function () {
+                        if (!confirm("确认恢复吗?")) {
+                            return;
+                        }
+                        $.post("/admin/RecoverProduction",
+                            this.production,
+                            function(res) {
+                                alert("恢复成功");
+                                app.production.isDeleted = false;
+                                app.getList();
+                            });
+                    }
+                },
+                created: function() {
+                    this.getList();
+                }
+            });
+        })
+    </script>
+}

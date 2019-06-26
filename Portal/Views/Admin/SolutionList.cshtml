@@ -1,8 +1,208 @@
-﻿
-@{
+﻿@{
     Layout = "_LayoutAdmin";
     ViewData["Title"] = "SolutionList";
 }
+<div id="app">
+    <h2>解决方案列表</h2>
+    <ul class="nav nav-pills">
+        <li v-bind:class="{active:isNewSolution}" v-on:click="selectNewSolution()" style="cursor: pointer"><a>新增</a></li>
+        <li v-for="item in arr" v-bind:class="{active:solution.id==item.id}" v-on:click="selectSolution(item)" style="cursor: pointer"><a>{{item.name}}<span class="badge" v-if="item.isDeleted">已删除</span></a></li>
+    </ul>
+    <br />
+    <input type="text" class="form-control" style="display: inline-block; width: 200px; margin-top: 2px;" v-model="solution.name" placeholder="名称" />
+    <input type="text" class="form-control" style="display: inline-block; width: 200px; margin-top: 2px;" v-model="solution.sort" placeholder="排序,越大越往前" />
+    <button class="btn btn-success" v-on:click="subSolution()">保存</button>
+    <button class="btn btn-danger" v-if="!isNewSolution && !solution.isDeleted" v-on:click="delSolution()">删除</button>
+    <button class="btn btn-warning" v-if="!isNewSolution && solution.isDeleted" v-on:click="recoverSolution()">恢复</button>
+    <br />
+    <br />
+    <div v-if="solution.id">
+        <h2>分栏管理</h2>
+        <ul class="nav nav-pills">
+            <li v-bind:class="{active:isNewTab}" v-on:click="selectNewTab()" style="cursor: pointer"><a>新增</a></li>
+            <li v-for="item in solution.solutionItems" v-bind:class="{active:tab.id==item.id}" v-on:click="selectTab(item)" style="cursor: pointer"><a>{{item.name}}<span class="badge" v-if="item.isDeleted">已删除</span></a></li>
+        </ul>
+        <br />
+        <input type="text" class="form-control" style="display: inline-block; width: 200px; margin-top: 2px;" v-model="tab.name" placeholder="名称" />
+        <input type="text" class="form-control" style="display: inline-block; width: 200px; margin-top: 2px;" v-model="tab.sort" placeholder="排序,越大越往前" />
+        <button class="btn btn-success" v-on:click="subTab()">保存</button>
+        <button class="btn btn-danger" v-if="!isNewTab && !tab.isDeleted" v-on:click="delTab()">删除</button>
+        <button class="btn btn-warning" v-if="!isNewTab && tab.isDeleted" v-on:click="recoverTab()">恢复</button>
+        <br />
+        <br />
+        <script id="editor" type="text/plain" style="width:1024px;height:500px;">
+    </script>
+        <div style="text-align: center; margin-top: 20px;" v-if="tab.id">
+            <button class="btn btn-success btn-lg" style="padding-left: 50px; padding-right: 50px;" v-on:click="sub()">保存</button>
+        </div>
+    </div>
+</div>
+@section Scripts
+{
 
-<h2>SolutionList</h2>
+    <script>
+        //实例化编辑器
+        //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+        var ue = UE.getEditor('editor');
 
+        $(function() {
+            var app = new Vue({
+                el: "#app",
+                data: {
+                    arr: [],
+                    solution: {
+                        solutionItems: []
+                    },
+                    tab: {},
+                    isNewSolution: true,
+                    isNewTab: true
+                },
+                methods: {
+                    getList: function() {
+                        $.post("/admin/GetSolutionList",
+                            {},
+                            function(res) {
+                                if (res.code == 200) {
+                                    app.arr = res.data;
+                                } else {
+                                    alert(res.msg);
+                                }
+                            });
+                    },
+                    getContent: function() {
+                        return UE.getEditor('editor').getContent();
+                    },
+                    setContent: function(content) {
+                        UE.getEditor('editor').setContent(content);
+                    },
+                    selectSolution: function(item) {
+                        this.isNewSolution = false;
+                        this.solution = item;
+                    },
+                    selectNewSolution: function() {
+                        this.isNewSolution = true;
+                        this.solution = {
+                            tabs: []
+                        }
+                        this.selectNewTab();
+                    },
+                    selectTab: function(item) {
+                        this.isNewTab = false;
+                        this.tab = item;
+                        $('#editor').show();
+                        $.post("/admin/GetSolutionItemPost", {id:item.id}, function(res) {
+                            if (res.code == 200) {
+                                app.setContent(res.data);
+                            } else {
+                                alert(res.msg);
+                            }
+                        });
+                    },
+                    selectNewTab: function() {
+                        this.isNewTab = true;
+                        this.tab = {};
+                        this.setContent("");
+                        $('#editor').hide();
+                    },
+                    subSolution: function() {
+                        if (this.isNewSolution) {
+                            $.post("/admin/AddSolution",
+                                this.solution,
+                                function(res) {
+                                    alert("新增成功");
+                                    app.getList();
+                                });
+                        } else {
+                            $.post("/admin/UpdateSolution",
+                                this.solution,
+                                function(res) {
+                                    alert("修改成功");
+                                    app.getList();
+                                });
+                        }
+                    },
+                    delSolution: function() {
+                        if (!confirm("确认删除吗?")) {
+                            return;
+                        }
+                        $.post("/admin/DeleteSolution",
+                            this.solution,
+                            function(res) {
+                                alert("删除成功");
+                                app.solution.isDeleted = true;
+                                app.getList();
+                            });
+                    },
+                    recoverSolution: function() {
+                        if (!confirm("确认恢复吗?")) {
+                            return;
+                        }
+                        $.post("/admin/RecoverSolution",
+                            this.solution,
+                            function(res) {
+                                alert("恢复成功");
+                                app.solution.isDeleted = false;
+                                app.getList();
+                            });
+                    },
+
+                    subTab: function() {
+                        this.tab.solutionId = this.solution.id;
+                        if (this.isNewTab) {
+                            $.post("/admin/AddSolutionItem",
+                                this.tab,
+                                function(res) {
+                                    alert("新增成功");
+                                    app.solution.solutionItems = res.data.solutionItems;
+                                    app.tab = {}
+                                });
+                        } else {
+                            $.post("/admin/UpdateSolutionItem",
+                                this.tab,
+                                function(res) {
+                                    alert("修改成功");
+                                    app.solution.solutionItems = res.data.solutionItems;
+                                });
+                        }
+                    },
+                    delTab: function() {
+                        if (!confirm("确认删除吗?")) {
+                            return;
+                        }
+                        $.post("/admin/DeleteSolutionItem",
+                            this.tab,
+                            function(res) {
+                                alert("删除成功");
+                                app.tab.isDeleted = true;
+                                app.solution.solutionItems = res.data.solutionItems;
+                            });
+                    },
+                    recoverTab: function() {
+                        if (!confirm("确认恢复吗?")) {
+                            return;
+                        }
+                        $.post("/admin/RecoverSolutionItem",
+                            this.tab,
+                            function(res) {
+                                alert("恢复成功");
+                                app.tab.isDeleted = false;
+                                app.solution.solutionItems = res.data.solutionItems;
+                            });
+                    },
+                    sub: function () {
+                        this.tab.content = this.getContent();
+                        $.post("/admin/UpdateSolutionItemPost",
+                            this.tab,
+                            function(res) {
+                                alert("文章保存成功");
+                            });
+                    }
+                },
+                created: function() {
+                    this.getList();
+                    $('#editor').hide();
+                }
+            });
+        })
+    </script>
+}
