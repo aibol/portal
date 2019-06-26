@@ -16,7 +16,7 @@ namespace Portal.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Post>().HasOne<Production>().WithOne().HasForeignKey<Post>(o => o.ProductionId);
-            modelBuilder.Entity<Post>().HasOne<SolutionItem>().WithMany().HasForeignKey(o => o.SolutionItemId);
+            modelBuilder.Entity<Post>().HasOne<SolutionItem>().WithOne().HasForeignKey<Post>(o => o.SolutionItemId);
         }
 
         public virtual DbSet<Post> Posts { get; set; }

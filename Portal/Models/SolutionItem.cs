@@ -19,6 +19,6 @@ namespace Portal.Models
 
         public Solution Solution { get; set; }
 
-        public List<Post> Posts { get; set; }
+        public Post Post { get; set; }
     }
 }

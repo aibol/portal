@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
 using Portal.Models;
 using UEditorNetCore;
 
@@ -36,7 +37,9 @@ namespace Portal
             services.AddDbContext<Db>
                 (options => options.UseSqlServer(connectStr));
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1).AddJsonOptions(options => {
+                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+            });
 
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 
