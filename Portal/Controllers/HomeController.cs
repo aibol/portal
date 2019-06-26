@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
@@ -42,6 +43,24 @@ namespace Portal.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel {RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier});
+        }
+
+        public IActionResult Solution(Guid id)
+        {
+            ViewBag.id = id;
+            return View();
+        }
+
+        public IActionResult ProductionList(int page)
+        {
+            ViewBag.page = page;
+            return View();
+        }
+
+        public IActionResult Production(Guid id)
+        {
+            ViewBag.id = id;
+            return View();
         }
     }
 }
