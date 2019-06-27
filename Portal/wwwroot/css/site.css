@@ -194,7 +194,8 @@ ol.indent0 {
 .solution-category {
     border-right: 1px solid #d9d9d9;
     padding-left: 50px !important;
-    padding-top:20px !important;
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
 }
 .solution-category .item{
     height:60px;
@@ -206,7 +207,6 @@ ol.indent0 {
 }
     .solution-category .item.active {
         color:#1ab394;
-        font-weight:bold;
         position:relative;
     }
     .solution-category .item:hover {

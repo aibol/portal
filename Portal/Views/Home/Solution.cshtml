@@ -3,71 +3,93 @@
     ViewData["Title"] = "Solution";
 }
 
+@section Scripts{ 
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var solutionId = "@ViewBag.id"; //解决方案id
+            var itemId = urlArgs().itemId;  //通过url截取文章id
+            console.log('itemId', itemId);
+
+            //获取解决方案里的文章列表
+            $.ajax({
+                type: "GET",
+                url: "/admin/GetSolution/" + solutionId,
+                data: null,
+                dataType: "json",
+                success: function (response) {
+                    $("#name").text(response.data.name);
+                    $("#describe").text(response.data.describe)
+
+                    if (response.data.solutionItems && response.data.solutionItems.length > 0) {
+                        if (itemId == undefined) {//如果文章id为空, 就默认为列表里的第一篇
+                            itemId = response.data.solutionItems[0].id;
+                        }
+
+                        //生成文章列表
+                        var html = '';
+                        response.data.solutionItems.forEach(function (node, index) {
+                            html += '<a href="javascript:;" onclick="changeItem($(this))" class="item ' + (itemId == node.id ? 'active' : '') + '" id="' + node.id + '">' + node.name + '</a>';
+                        });
+                        $("#category").html(html);
+
+                        changeItem($("#" + itemId));
+                    }
+                    else {
+                        $("#article").html('<p>暂无内容</p>');
+                    }
+                }
+            });
+
+            //文章列表点击切换文章内容
+            changeItem = function (obj) {
+                $.ajax({
+                    type: "GET",
+                    url: "/admin/GetSolutionItemPost/" + obj.attr("id"),
+                    data: null,
+                    dataType: "json",
+                    success: function (response) {
+                        $("#article").html(response.data);
+                        $("#category a.active").removeClass("active");
+                        $("#" + obj.attr("id")).addClass("active");
+                    }
+                });
+            }
+
+            //获取url参数(返回对象)
+            function urlArgs() {
+                var args = {};
+                var query = location.search.substring(1);
+                var pairs = query.split("&");
+                for (var i = 0; i < pairs.length; i++) {
+                    var pos = pairs[i].indexOf("=");
+                    if (pos == -1) {
+                        continue;
+                    }
+                    var name = pairs[i].substring(0, pos);
+                    var value = pairs[i].substring(pos + 1);
+                    args[name] = value;
+                }
+                return args;
+            }
+        });
+    </script>
+}
+
 <div class="header_solution">
     <img src="../img/action-bg.jpg" />
     <div class="solution-name">
-        顺风出租
-        <p class="solution-summary">出租车领域的互联网解决方案，带给乘客出行新体验</p>
+        <span id="name"></span>
+        <p class="solution-summary" id="describe"></p>
     </div>
 </div>
 <div class="container solution-content">
     <div class="row">
-        <div class="col-md-3 solution-category">
-            <a href="javascript:;" class="item active">新能源电动出租车</a>
-            <a href="javascript:;" class="item">申请成为司机</a>
-            <a href="javascript:;" class="item">车载按摩垫</a>
-            <a href="javascript:;" class="item">新能源电动出租车</a>
-            <a href="javascript:;" class="item">申请成为司机</a>
-            <a href="javascript:;" class="item">车载按摩垫</a>
-            <a href="javascript:;" class="item">新能源电动出租车</a>
+        <!--侧边栏: 文章列表-->
+        <div class="col-md-3 solution-category" id="category">
         </div>
-        <div class="col-md-9 solution-article">
-            @*<div>@ViewBag.id</div>*@
-            <h2>新能源电动出租车</h2>
-            <p>电动汽车(BEV)是指以车载电源为动力，用电机驱动车轮行驶，符合道路交通、安全法规各项要求的车辆。由于对环境影响相对传统汽车较小，其前景被广泛看好，但当前技术尚不成熟。</p>
-            <p>工作原理：蓄电池——电流——电力调节器——电动机——动力传动系统——驱动汽车行驶（Road)。</p>
-            <h4>主要种类</h4>
-            <p>电动汽车的种类：纯电动汽车(BEV)、混合动力汽车(HEV)、燃料电池汽车(FCEV)。</p>
-            <p class="text-center"><img src="../img/work-6.jpg" width="500" /></p>
-            <h5>纯电动</h5>
-            <p>纯电动汽车由电动机驱动的汽车。</p>
-            <p>纯电动汽车，相对燃油汽车而言，主要差别（异）在于四大部件，驱动电机，调速控制器、动力电池、车载充电器。相对于加油站而言，它由公用超快充电站。纯电动汽车之品质差异取决于这四大部件，其价值高低也取决于这四大部件的品质。纯电动汽车的用途也在四大部件的选用配置直接相关。</p>
-            <p>纯电动汽车时速快慢，和启动速度取决于驱动电机的功率和性能，其续行里程之长短取决于车载动力电池容量之大小，车载动力电池之重量取决于选用何种动力电池如铅酸、锌碳、锂电池等，它们体积，比重、比功率、比能量、循环寿命都各异。这取决于制造商对整车档次的定位和用途以及市场界定、市场细分。</p>
-            <p>纯电动汽车的驱动电机有直流有刷、无刷、有永磁、电磁之分，再有交流步进电机等，它们的选用也与整车配置、用途、档次有关。另外驱动电机之调速控制也分有级调速和无级调速，有采用电子调速控制器和不用调速控制器之分。电动机有轮毂电机、内转子电机、有单电机驱动、多电机驱动和组合电机驱动等。</p>
-            <p><strong>优点：</strong>技术相对简单成熟，只要有电力供应的地方都能够充电。</p>
-            <p><strong>缺点：</strong>蓄电池单位重量储存的能量太少，还因电动车的电池较贵，又没形成经济规模，故购买价格较贵，至于使用成本，有些使用价格比汽车贵，有些价格仅为汽车的1/3，这主要取决于电池的寿命及当地的油、电价格。</p>
-            <h5>混合动力</h5>
-            <p>串联式混合动力汽车（SHEV）：车辆的驱动力只来源于电动机的混合动力(电动)汽车。结构特点是发动机带动发电机发电，电能通过电机控制器输送给电动机，由电动机驱动汽车行驶。另外，动力电池也可以单独向电动机提供电能驱动汽车行驶。</p>
-            <p>并联式混合动力汽车（PHEV）：车辆的驱动力由电动机及发动机同时或单独供给的混合动力(电动)汽车。结构特点是并联式驱动系统可以单独使用发动机或电动机作为动力源，也可以同时使用电动机和发动机作为动力源驱动汽车行驶。</p>
-            <p>混联式混合动力汽车（CHEV）：同时具有串联式、并联式驱动方式的混合动力(电动)汽车。结构特点是可以在串联混合模式下工作，也可以在并联混合模式下工作，同时兼顾了串联式和并联式的特点。</p>
-            <p>那些通常采用传统燃料的，同时配以电动机/发动机来改善低速动力输出和燃油消耗。国内市场上，混合动力车辆的主流都是汽油混合动力，而国际市场上柴油混合动力车型发展也很快。</p>
-            <p class="text-center"><img src="../img/work-5.jpg" width="500" /></p>
-            <p>优点：</p>
-            <p>1．采用混合动力后可按平均需用的功率来确定内燃机的最大功率，此时处于油耗低、污染少的最优工况下工作。需要大功率内燃机功率不足时，由电池来补充；负荷少时，富余的功率可发电给电池充电，由于内燃机可持续工作，电池又可以不断得到充电，故其行程和普通汽车一样。</p>
-            <p>2．因为有了电池，可以十分方便地回收制动时、下坡时、怠速时的能量。</p>
-            <p>3．在繁华市区，可关停内燃机，由电池单独驱动，实现“零”排放。</p>
-            <p>4．有了内燃机可以十分方便地解决耗能大的空调、取暖、除霜等纯电动汽车遇到的难题。</p>
-            <p>5．可以利用现有的加油站加油，不必再投资。</p>
-            <p>6．可让电池保持在良好的工作状态，不发生过充、过放，延长其使用寿命，降低成本。</p>
-            <p>缺点：长距离高速行驶基本不能省油。</p>
-            <h5>燃料电池</h5>
-            <p>以燃料电池作为动力电源的汽车。燃料电池的化学反应过程不会产生有害产物，因此燃料电池车辆是无污染汽车，燃料电池的能量转换效率比内燃机要高2~3倍，因此从能源的利用和环境保护方面，燃料电池汽车是一种理想的车辆。</p>
-            <p>单个的燃料电池必须结合成燃料电池组，以便获得必需的动力，满足车辆使用的要求。</p>
-            <p class="text-center"><img src="../img/work-7.jpg" width="500" /></p>
-            <p>近几年来，燃料电池技术已经取得了重大的进展。世界著名汽车制造厂，如戴姆勒－克莱斯勒、福特、丰田和通用汽车公司已经宣布，计划在2004年以前将燃料电池汽车投向市场。当下，燃料电池轿车的样车正在进行试验，以燃料电池为动力的运输大客车在北美的几个城市中正在进行示范项目。在开发燃料电池汽车中仍然存在着技术性挑战，如燃料电池组的一体化，提高商业化电动汽车燃料处理器和辅助部汽车制造厂都在朝着集成部件和减少部件成本的方向努力，并已取得了显著的进步。</p>
-            <p>与传统汽车相比，燃料电池汽车具有以下优点：</p>
-            <p>1．零排放或近似零排放。</p>
-            <p>2．减少了机油泄露带来的水污染。</p>
-            <p>3．降低了温室气体的排放。</p>
-            <p>4．提高了燃油经济性。</p>
-            <p>5．提高了发动机燃烧效率。</p>
-            <p>6．运行平稳、无噪声。</p>
-            <h4>国家政策</h4>
-            <p>按照我国电动汽车充电设施标准化总体部署，在国家标准委协调和支持下，由工业和信息化部、国家能源局组织，全国汽标委牵头，汽研中心、电力企业联合会和电器科学研究院共同起草了《电动汽车传导充电用连接装置第1部分：通用要求》、《电动汽车传导充电用连接装置 第2部分：交流充电接口》、《电动汽车传导充电用连接装置第3部分：直流充电接口》三项国家标准；由国家能源局、工业和信息化部组织，电力企业联合会和汽研中心共同起草了《电动汽车非车载传导式充电机与电池管理系统之间的通信协议》国家标准。该四项标准已于2011年12月22日以“中华人民共和国国家标准公告2011年第21号”批准发布，2012年3月1日起实施 [1]  。</p>
-            <h4>系统结构</h4>
-            <h5>电力驱动</h5>
-            <p>电动汽车是指以车载电源为动力，用电机驱动车轮行驶，符合道路交通、安全法规各项要求的车辆。它使用存储在电池中的电来发动。在驱动汽车时有时使用12或24块电池，有时则需要更多。</p>
-            <p>电动汽车 [3]  的组成包括：电力驱动及控制系统、驱动力传动等机械系统、完成既定任务的工作装置等。电力驱动及控制系统是电动汽车的核心，也是区别于内燃机汽车的最大不同点。电力驱动及控制系统由驱动电动机、电源和电动机的调速控制装置等组成。电动汽车的其他装置基本与内燃机汽车相同。</p>
+
+        <!--正文: 文章内容-->
+        <div class="col-md-9 solution-article" id="article">
         </div>
     </div>
 </div>
