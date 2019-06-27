@@ -154,3 +154,73 @@ ol.indent0 {
     margin: 20px auto;
     border-bottom: 2px solid #1ab394;
 }
+.features-icon {
+    color: #1ab394;
+    font-size: 36px;
+}
+.bodyTop {
+    margin-top:80px;
+}
+
+.header_solution {
+    position:relative;
+    height: 400px;
+    overflow: hidden;
+    text-align:center;
+}
+.header_solution .solution-name {
+    font-family: 'Microsoft YaHei';
+    position: absolute;
+    top:45%;
+    left: 0;
+    width:100%;
+    font-size: 50px;
+    text-align:center;
+    color:#fff;
+    letter-spacing: 8px;
+}
+    .header_solution .solution-name .solution-summary {
+        margin-top: 20px;
+        font-size: 20px;
+        letter-spacing: 1px;
+    }
+.solution-content {
+    margin:50px auto;
+}
+.solution-content p{
+    font-size:14px;
+    line-height:150%;
+}
+.solution-category {
+    border-right: 1px solid #d9d9d9;
+    padding-left: 50px !important;
+    padding-top:20px !important;
+}
+.solution-category .item{
+    height:60px;
+    line-height:60px;
+    font-size:16px;
+    color:#999;
+    display:block;
+    text-decoration:none
+}
+    .solution-category .item.active {
+        color:#1ab394;
+        font-weight:bold;
+        position:relative;
+    }
+    .solution-category .item:hover {
+        color: #1ab394;
+    }
+        .solution-category .item.active:after {
+            content: '';
+            width: 7px;
+            height: 60px;
+            position: absolute;
+            right: -14px;
+            top: 0;
+            background: #1ab394;
+        }
+.solution-article {
+    padding-left: 50px !important;
+}

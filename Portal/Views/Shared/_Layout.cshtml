@@ -46,7 +46,7 @@
     <partial name="_CookieConsentPartial" />
     <div id="page-container" class="fade">
         <div id="header" class="header navbar navbar-transparent navbar-fixed-top">
-            <div class="container">
+            @*<div class="container">*@
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-navbar">
                         <span class="icon-bar"></span>
@@ -65,45 +65,6 @@
                 <div class="collapse navbar-collapse" id="header-navbar">
                     <partial name="_LoginPartial" />
                     <ul class="nav navbar-nav navbar-right">
-                        @*<li class="dropdown">
-                            <a href="javascript:void(0)" data-click="scroll-to-target" data-toggle="dropdown">开发平台 <b class="caret"></b></a>
-                            <ul class="dropdown-menu dropdown-menu-left animated fadeInDown">
-                                <li><a href="/platform/aibol2">Aibol2</a></li>
-                                <li><a href="/platform/sso">统一认证平台</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="javascript:void(0)" data-click="scroll-to-target" data-toggle="dropdown">产品 <b class="caret"></b></a>
-                            <ul class="dropdown-menu dropdown-menu-left animated fadeInDown">
-                                <li><a href="/product/workflow">工作流引擎</a></li>
-                                <li><a href="/product/form">表单设计器</a></li>
-                                <li><a href="/product/report">报表引擎</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="javascript:void(0)" data-click="scroll-to-target" data-toggle="dropdown">行业解决方案<b class="caret"></b></a>
-                            <ul class="dropdown-menu dropdown-menu-left animated fadeInDown">
-                                <li><a href="/solution/nec">新能源汽车</a></li>
-                                <li><a href="/solution/power">发电集团</a></li>
-                                <li><a href="/solution/going">出行</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="javascript:void(0)" data-click="scroll-to-target" data-toggle="dropdown">案例<b class="caret"></b></a>
-                            <ul class="dropdown-menu dropdown-menu-left animated fadeInDown">
-                                <li><a href="/case/develop">开发案例</a></li>
-                                <li><a href="/case/customers">行业客户</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="javascript:void(0)" data-click="scroll-to-target" data-toggle="dropdown">开发资源<b class="caret"></b></a>
-                            <ul class="dropdown-menu dropdown-menu-left animated fadeInDown">
-                                <li><a href="https://doc.aibol.com">文档</a></li>
-                                <li><a href="/resource/frontend">前端模板</a></li>
-                                <li><a href="/resource/backend">后端模板</a></li>
-                                <li><a href="/resource/mobile">移动端模板</a></li>
-                            </ul>
-                        </li>*@
                         <li><a href="#shunfengchuzu" data-click="scroll-to-target">顺风出租</a></li>
                         <li><a href="#chongdianzhuangyunying" data-click="scroll-to-target">充电桩运营系统</a></li>
                         <li><a href="#jianzhuangguanli" data-click="scroll-to-target">建桩管理系统</a></li>
@@ -111,7 +72,7 @@
                         <li><a href="#contact" data-click="scroll-to-target">联系我们</a></li>
                     </ul>
                 </div>
-            </div>
+            @*</div>*@
         </div>
         @RenderBody()
 
