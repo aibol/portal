@@ -49,6 +49,16 @@ namespace Portal.Controllers
 
             return Success(list);
         }
+        public IActionResult GetSolution(Guid id)
+        {
+            var s = _db.Solutions.Include(o => o.SolutionItems).First(o=>o.Id == id);
+
+            s.SolutionItems = s.SolutionItems.OrderBy(o => o.IsDeleted).ThenByDescending(o => o.Sort)
+                .ThenByDescending(o => o.CreationTime).ToList();
+
+            return Success(s);
+        }
+
 
         public IActionResult AddSolution(string name, int sort)
         {
