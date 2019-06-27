@@ -2,41 +2,42 @@
     Layout = "_LayoutAdmin";
     ViewData["Title"] = "SolutionList";
 }
-<div id="app">
-    <h2>解决方案列表</h2>
-    <ul class="nav nav-pills">
-        <li v-bind:class="{active:isNewSolution}" v-on:click="selectNewSolution()" style="cursor: pointer"><a>新增</a></li>
-        <li v-for="item in arr" v-bind:class="{active:solution.id==item.id}" v-on:click="selectSolution(item)" style="cursor: pointer"><a>{{item.name}}<span class="badge" v-if="item.isDeleted">已删除</span></a></li>
-    </ul>
-    <br />
-    <input type="text" class="form-control" style="display: inline-block; width: 200px; margin-top: 2px;" v-model="solution.name" placeholder="名称" />
-    <input type="text" class="form-control" style="display: inline-block; width: 200px; margin-top: 2px;" v-model="solution.sort" placeholder="排序,越大越往前" />
-    <button class="btn btn-success" v-on:click="subSolution()">保存</button>
-    <button class="btn btn-danger" v-if="!isNewSolution && !solution.isDeleted" v-on:click="delSolution()">删除</button>
-    <button class="btn btn-warning" v-if="!isNewSolution && solution.isDeleted" v-on:click="recoverSolution()">恢复</button>
-    <br />
-    <br />
-    <div v-if="solution.id">
-        <h2>分栏管理</h2>
+    <div id="app">
+        <h2>解决方案列表</h2>
         <ul class="nav nav-pills">
-            <li v-bind:class="{active:isNewTab}" v-on:click="selectNewTab()" style="cursor: pointer"><a>新增</a></li>
-            <li v-for="item in solution.solutionItems" v-bind:class="{active:tab.id==item.id}" v-on:click="selectTab(item)" style="cursor: pointer"><a>{{item.name}}<span class="badge" v-if="item.isDeleted">已删除</span></a></li>
+            <li v-bind:class="{active:isNewSolution}" v-on:click="selectNewSolution()" style="cursor: pointer"><a>新增</a></li>
+            <li v-for="item in arr" v-bind:class="{active:solution.id==item.id}" v-on:click="selectSolution(item)" style="cursor: pointer"><a>{{item.name}}<span class="badge" v-if="item.isDeleted">已删除</span></a></li>
         </ul>
         <br />
-        <input type="text" class="form-control" style="display: inline-block; width: 200px; margin-top: 2px;" v-model="tab.name" placeholder="名称" />
-        <input type="text" class="form-control" style="display: inline-block; width: 200px; margin-top: 2px;" v-model="tab.sort" placeholder="排序,越大越往前" />
-        <button class="btn btn-success" v-on:click="subTab()">保存</button>
-        <button class="btn btn-danger" v-if="!isNewTab && !tab.isDeleted" v-on:click="delTab()">删除</button>
-        <button class="btn btn-warning" v-if="!isNewTab && tab.isDeleted" v-on:click="recoverTab()">恢复</button>
+        <input type="text" class="form-control" style="display: inline-block; width: 200px; margin-top: 2px;" v-model="solution.name" placeholder="名称" />
+        <input type="text" class="form-control" style="display: inline-block; width: 200px; margin-top: 2px;" v-model="solution.describe" placeholder="描述" />
+        <input type="text" class="form-control" style="display: inline-block; width: 200px; margin-top: 2px;" v-model="solution.sort" placeholder="排序,越大越往前" />
+        <button class="btn btn-success" v-on:click="subSolution()">保存</button>
+        <button class="btn btn-danger" v-if="!isNewSolution && !solution.isDeleted" v-on:click="delSolution()">删除</button>
+        <button class="btn btn-warning" v-if="!isNewSolution && solution.isDeleted" v-on:click="recoverSolution()">恢复</button>
         <br />
         <br />
-        <script id="editor" type="text/plain" style="width:1024px;height:500px;">
-    </script>
-        <div style="text-align: center; margin-top: 20px;" v-if="tab.id">
-            <button class="btn btn-success btn-lg" style="padding-left: 50px; padding-right: 50px;" v-on:click="sub()">保存</button>
+        <div v-if="solution.id">
+            <h2>分栏管理</h2>
+            <ul class="nav nav-pills">
+                <li v-bind:class="{active:isNewTab}" v-on:click="selectNewTab()" style="cursor: pointer"><a>新增</a></li>
+                <li v-for="item in solution.solutionItems" v-bind:class="{active:tab.id==item.id}" v-on:click="selectTab(item)" style="cursor: pointer"><a>{{item.name}}<span class="badge" v-if="item.isDeleted">已删除</span></a></li>
+            </ul>
+            <br />
+            <input type="text" class="form-control" style="display: inline-block; width: 200px; margin-top: 2px;" v-model="tab.name" placeholder="名称" />
+            <input type="text" class="form-control" style="display: inline-block; width: 200px; margin-top: 2px;" v-model="tab.sort" placeholder="排序,越大越往前" />
+            <button class="btn btn-success" v-on:click="subTab()">保存</button>
+            <button class="btn btn-danger" v-if="!isNewTab && !tab.isDeleted" v-on:click="delTab()">删除</button>
+            <button class="btn btn-warning" v-if="!isNewTab && tab.isDeleted" v-on:click="recoverTab()">恢复</button>
+            <br />
+            <br />
+            <script id="editor" type="text/plain" style="width:1024px;height:500px;">
+            </script>
+            <div style="text-align: center; margin-top: 20px;" v-if="tab.id">
+                <button class="btn btn-success btn-lg" style="padding-left: 50px; padding-right: 50px;" v-on:click="sub()">保存</button>
+            </div>
         </div>
     </div>
-</div>
 @section Scripts
 {
 

@@ -60,17 +60,18 @@ namespace Portal.Controllers
         }
 
 
-        public IActionResult AddSolution(string name, int sort)
+        public IActionResult AddSolution(string name, int sort,string describe)
         {
-            _db.Solutions.Add(new Solution() { Name = name, Sort = sort });
+            _db.Solutions.Add(new Solution() { Name = name, Sort = sort ,Describe = describe });
             _db.SaveChanges();
             return Success();
         }
-        public IActionResult UpdateSolution(Guid id, string name, int sort)
+        public IActionResult UpdateSolution(Guid id, string name, int sort, string describe)
         {
             var s = _db.Solutions.First(o => o.Id == id);
             s.Name = name;
             s.Sort = sort;
+            s.Describe = describe;
             _db.SaveChanges();
             return Success();
         }

@@ -13,6 +13,8 @@ namespace Portal.Models
     {
         public string Name { get; set; }
 
+        public string Describe { get; set; }
+
         /// <summary>
         /// 排序越大越往前
         /// </summary>
