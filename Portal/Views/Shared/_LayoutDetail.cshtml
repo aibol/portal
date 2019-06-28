@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta content="上海领承智能科技有限公司官方网站, 软件系统开发成本低" name="description" />
+    <meta content="aibol system, 领承科技" name="author" />
+    <title>
+        @{
+            var title = ViewData["Title"];
+            if (!string.IsNullOrEmpty(title?.ToString()))
+            {
+                title += " - ";
+            }
+            title += "专业企业管理软件开发平台";
+        }
+        @title
+    </title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.css">
+        <link rel="stylesheet" href="~/css/animate.css" />
+        <link rel="stylesheet" href="~/css/style.css" />
+        <link rel="stylesheet" href="~/css/style-responsive.min.css" />
+        <link rel="stylesheet" href="~/css/theme/default.css" />
+        <link rel="stylesheet" href="~/css/iconfont.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+        <script src="~/lib/pace/pace.min.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="~/css/animate.min.css" />
+        <link rel="stylesheet" href="~/css/style.min.css" />
+        <link rel="stylesheet" href="~/css/style-responsive.min.css" />
+        <link rel="stylesheet" href="~/css/theme/default.css" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+        <script src="~/lib/pace/pace.min.js"></script>
+    </environment>
+</head>
+<body data-spy="scroll" data-target="#header-navbar" data-offset="51">
+    <partial name="_CookieConsentPartial" />
+    <div id="page-container" class="fade">
+        <div id="header" class="header navbar navbar-transparent navbar-fixed-top">
+            @*<div class="container">*@
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-navbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="/" class="navbar-brand">
+                        <span class="brand-logo">
+                            <img src="~/img/logo.png" />
+                        </span>
+                        <span class="brand-text">
+                            <span class="text-theme">Aibol System</span> <small>领承科技</small>
+                        </span>
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse" id="header-navbar">
+                    <partial name="_LoginPartial" />
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/#shunfengchuzu">顺风出租</a></li>
+                        <li><a href="/#chongdianzhuangyunying">充电桩运营系统</a></li>
+                        <li><a href="/#jianzhuangguanli">建桩管理系统</a></li>
+                        <li><a href="/#about">关于领承</a></li>
+                        <li><a href="/#contact">联系我们</a></li>
+                    </ul>
+                </div>
+            @*</div>*@
+        </div>
+        @RenderBody()
+
+        <div id="footer" class="footer">
+            <div class="container">
+                <div class="footer-brand">
+                    <div class="footer-brand-logo">
+                        <img src="~/img/logo_f.png" />
+                    </div>
+                    Aibol System
+                </div>
+                <p>
+                    &copy; 上海领承智能科技有限公司 <a href="http://www.miitbeian.gov.cn">沪ICP备19001409号</a> <br />
+                    @*An admin & front end theme with serious impact. Created by <a href="#">SeanTheme</a>*@
+                </p>
+                @*<p class="social-list">
+                    
+                </p>*@
+            </div>
+        </div>
+    </div>
+
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/lib/jquery-cookie/jquery.cookie.js"></script>
+        <script src="~/lib/scrollMonitor/scrollMonitor.js"></script>
+        <script src="~/js/apps.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="~/lib/jquery-cookie/jquery.cookie.js"></script>
+        <script src="~/lib/scrollMonitor/scrollMonitor.min.js"></script>
+        <script src="~/js/apps.min.js" asp-append-version="true"></script>
+    </environment>
+    <!--[if lt IE 9]>
+        <script src="~/js/crossbrowserjs/html5shiv.js"></script>
+        <script src="~/js/crossbrowserjs/respond.min.js"></script>
+        <script src="~/js/crossbrowserjs/excanvas.min.js"></script>
+    <![endif]-->
+
+    <script>
+        $(document).ready(function () {
+            App.init();
+        });
+    </script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

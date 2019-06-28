@@ -1,0 +1,205 @@
+﻿
+@{
+    ViewData["Title"] = "sft";
+    Layout = "~/Views/Shared/_LayoutDetail.cshtml";
+}
+
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var solutionId = urlArgs().id; //解决方案id
+            var itemId = urlArgs().itemId;  //通过url截取文章id
+            console.log('itemId', itemId);
+
+            //获取解决方案里的文章列表
+            $.ajax({
+                type: "GET",
+                url: "/admin/GetSolution/" + solutionId,
+                data: null,
+                dataType: "json",
+                success: function (response) {
+                    $("#name").text(response.data.name);
+                    $("#describe").text(response.data.describe)
+
+                    if (response.data.solutionItems && response.data.solutionItems.length > 0) {
+                        if (itemId == undefined) {//如果文章id为空, 就默认为列表里的第一篇
+                            itemId = response.data.solutionItems[0].id;
+                        }
+
+                        //生成文章列表
+                        var html = '';
+                        response.data.solutionItems.forEach(function (node, index) {
+                            if (!node.isDeleted) {
+                                html += '<a href="javascript:;" onclick="changeItem($(this))" class="item ' + (itemId == node.id ? 'active' : '') + '" id="' + node.id + '">' + node.name + '</a>';
+                            }
+                        });
+                        html += '<a href="javascript:;" onclick="changeItem($(this))" class="item ' + (itemId == 'apply-to-sft-driver' ? 'active' : '') + '" id="apply-to-sft-driver">申请成为顺风司机</a>';
+                        $("#category").html(html);
+
+                        changeItem($("#" + itemId));
+                    }
+                    else {
+                        $("#article").html('<p>暂无内容</p>');
+                    }
+                }
+            });
+
+            //文章列表点击切换文章内容
+            changeItem = function (obj) {
+                var id = obj.attr("id");
+                if (id == "apply-to-sft-driver") {//申请成为顺风司机--显示表单
+                    $("#form").show();
+                    $("#article").hide();
+                    $("#category a.active").removeClass("active");
+                    $("#" + obj.attr("id")).addClass("active");
+                }
+                else {//其他--显示后台维护的文章
+                    $("#form").hide();
+                    $("#article").show();
+                    
+                    $.ajax({
+                        type: "GET",
+                        url: "/admin/GetSolutionItemPost/" + id,
+                        data: null,
+                        dataType: "json",
+                        success: function (response) {
+                            $("#article").html(response.data);
+                            $("#category a.active").removeClass("active");
+                            $("#" + obj.attr("id")).addClass("active");
+                        }
+                    });
+                }
+            }
+
+            //获取url参数(返回对象)
+            function urlArgs() {
+                var args = {};
+                var query = location.search.substring(1);
+                var pairs = query.split("&");
+                for (var i = 0; i < pairs.length; i++) {
+                    var pos = pairs[i].indexOf("=");
+                    if (pos == -1) {
+                        continue;
+                    }
+                    var name = pairs[i].substring(0, pos);
+                    var value = pairs[i].substring(pos + 1);
+                    args[name] = value;
+                }
+                return args;
+            }
+        });
+    </script>
+}
+
+<div class="header_solution">
+    <img src="../img/bg/bg-14.jpg" />
+
+    <div class="solution-name" style="text-align:left; margin-left:100px;">
+        <span id="name"></span>
+        <p class="solution-summary" id="describe"></p>
+    </div>
+</div>
+<div class="container solution-content">
+    <div class="row">
+        <!--侧边栏: 文章列表-->
+        <div class="col-md-3 solution-category" id="category">
+        </div>
+
+        <!--正文: 文章内容-->
+        <div class="col-md-9 solution-article" id="article" style="display:none">
+        </div>
+        <div class="col-md-9 solution-article" id="form">
+            <h1>申请成为顺风司机</h1>
+            <form role="form" method="post" class="f-s-14 m-t-30">
+                @*@Html.ValidationSummary()*@
+                @*<input type="hidden" name="openid" value="@ViewBag.OpenId" />*@
+
+                <!--用户个人信息-->
+                <div class="box baseinfo">
+                    <div class="input-wrap">
+                        <label class="f-s-16" for="name">姓名</label>
+                        <input type="text" name="name" id="name" placeholder="您的姓名" class="form-control" autocomplete="off"/>
+                    </div>
+                    <div class="input-wrap m-t-15">
+                        <label class="f-s-16" for="team">车队</label>
+                        <input type="text" name="team" id="team" placeholder="所属车队" class="form-control" autocomplete="off" />
+                    </div>
+                    <div class="input-wrap m-t-15">
+                        <label class="f-s-16" for="name">手机号</label>
+                        <input type="text" name="mobile" id="mobile" placeholder="您的联系电话" class="form-control" autocomplete="off" />
+
+                    </div>
+                    <div class="tips m-t-5">手机号可用于登录顺风出租App</div>
+                </div>
+
+                <h3 style="text-align: center;color:#3d3d3d" class="m-t-30">-- 电动出租车调查问卷 --</h3>
+
+                <!--用户意向-->
+                <div class="box intention">
+                    <div class="intention-title">选用新能源电动车，您更愿意？（可多选）</div>
+                    <div class="options noh m-t-5 p-l-30">
+                        <label for="vehicle1">
+                            <input type="checkbox" id="vehicle1" name="vehicle" value="1" />
+                            全款购买
+                            <span style="margin-left: 25px;">一次性投入较高，运营成本低</span>
+                        </label>
+                    </div>
+                    <div class="options noh p-l-30">
+                        <label for="vehicle2">
+                            <input type="checkbox" id="vehicle2" name="vehicle" value="2" />
+                            以租代售
+                            <span style="margin-left: 25px;">一次性投入少，且8年多赚5-8万</span>
+                        </label>
+                    </div>
+
+                    <div class="intention-title">是否愿意提前报废车辆，改用电动车?</div>
+                    <div class="options h65 m-t-5">
+                        <label for="scrap1">
+                            <input type="radio" id="scrap1" name="scrap" value="1" class="m-l-30" /> 愿意
+                        </label>
+
+                        <label for="scrap2">
+                            <input type="radio" id="scrap2" name="scrap" value="2" class="m-l-30" /> 不考虑
+                        </label>
+                    </div>
+                    <div class="tips">注：由上海领承估价并回收</div>
+
+                    <div class="intention-title">您愿意考虑的电动车品牌？（可多选）</div>
+                    <div class="options h65 m-t-5">
+                        <label for="b_0">
+                            <input type="checkbox" id="b_0" name="brand" value="0" class="m-l-30" /> 上汽荣威
+                        </label>
+
+                        <label for="b_1">
+                            <input type="checkbox" id="b_1" name="brand" value="1" class="m-l-30" /> 江淮
+                        </label>
+                        <label for="b_2">
+                            <input type="checkbox" id="b_2" name="brand" value="2" class="m-l-30" /> 比亚迪
+                        </label>
+
+                        <label for="b_3">
+                            <input type="checkbox" id="b_3" name="brand" value="3" class="m-l-30" /> 奇瑞
+                        </label>
+                        <label for="b_4">
+                            <input type="checkbox" id="b_4" name="brand" value="4" class="m-l-30" /> 吉利
+                        </label>
+
+                        <label for="b_5">
+                            <input type="checkbox" id="b_5" name="brand" value="5" class="m-l-30" /> 北汽
+                        </label>
+                    </div>
+
+                    <div class="intention-title">您的其他意见</div>
+                    <div class="textarea-wrap m-t-5">
+                        <textarea rows="5" style="width:100%" name="suggestion"></textarea>
+                    </div>
+                </div>
+
+                <!--提交按钮-->
+                <div class="btn-wrap m-t-30 text-center">
+                    <button type="submit" class="btn btn-theme">成为顺风司机</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

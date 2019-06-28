@@ -62,5 +62,20 @@ namespace Portal.Controllers
             ViewBag.id = id;
             return View();
         }
+
+        public IActionResult LessCode()
+        {
+            return View();
+        }
+
+        public IActionResult sft()
+        {
+            return View();
+        }
+
+        public IActionResult Tech()
+        {
+            return View();
+        }
     }
 }
