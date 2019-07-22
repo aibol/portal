@@ -1,4 +1,5 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
+using System.Net.Http;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -62,6 +63,11 @@ namespace Portal
                     
                     options.ClientId = identity.GetSection("ClientId").Value;
                     options.ClientSecret = identity.GetSection("ClientSecret").Value;
+
+                    options.BackchannelHttpHandler = new HttpClientHandler
+                    {
+                        ServerCertificateCustomValidationCallback = delegate { return true; }
+                    };
                 });
 
             services.AddScoped<ConfigurationActionFilter>();
