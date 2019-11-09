@@ -77,5 +77,20 @@ namespace Portal.Controllers
         {
             return View();
         }
+
+        public IActionResult RongweiEi5()
+        {
+            return View();
+        }
+
+        public IActionResult Qirui5E()
+        {
+            return View();
+        }
+
+        public IActionResult Xundao()
+        {
+            return View();
+        }
     }
 }

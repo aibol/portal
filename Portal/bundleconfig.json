@@ -5,8 +5,8 @@
     "outputFileName": "wwwroot/css/site.min.css",
     // An array of relative input file paths. Globbing patterns supported
     "inputFiles": [
-      "wwwroot/css/site.css",
-      "wwwroot/css/iconfont.css"
+      "wwwroot/css/iconfont.css",
+      "wwwroot/css/site.css"
     ]
   },
   {
@@ -20,6 +20,7 @@
     "outputFileName": "wwwroot/js/apps.min.js",
     "inputFiles": [
       "wwwroot/js/apps.js"
+
     ],
     // Optionally specify minification options
     "minify": {
