@@ -1,0 +1,886 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutDetail.cshtml";
+}
+
+@section Style{
+    <link href="../qirui5E/css/reset.css" rel="stylesheet" />
+    <link href="../qirui5E/css/slick.css" rel="stylesheet" />
+    <link href="../qirui5E/css/form.css" rel="stylesheet" />
+    <link href="../qirui5E/css/configuration.css" rel="stylesheet" />
+    <link href="../qirui5E/css/pc.css" rel="stylesheet" />
+}
+
+<!--顶部大图-->
+<div id="page-1" class="kv">
+    <img id="kv-img" src="../qirui5E/images/车型页kv.jpg" />
+</div>
+
+<!--顶部大图对应数据-->
+<!-- <div id="infos" class="infos">
+    <div class="wrapper">
+    <ul>
+        <li class="i-1">
+        <p class="strong">
+            <span class="price">￥</span> <span id="infos-1" data-value="49900" class="strong">49,900</span>
+        </p>
+        <p class="text">元起</p>
+        </li>
+        <li class="i-2">
+        <p id="infos-2" class="strong" data-value="40" data-unit="int">40</p>
+        <p class="text"> 万用户信赖<br /> 全新艾瑞泽5 </p>
+        </li>
+        <li class="i-3">
+        <p id="infos-3" class="strong" data-value="5" data-ext="" data-unit="int">5</p>
+        <p class="text">大模块<br /> 12项配置升级</p>
+        </li>
+        <li class="i-4">
+        <p id="infos-4" class="strong" data-value="">全</p>
+        <p class="text">系排放<br />符合国6B标准</p>
+        </li>
+    </ul>
+    </div>
+</div> -->
+<!--车内外360度全景图-->
+<!--轮播图-->
+<div id="page-3" class="high-lights">
+    <div class="nav-bar">
+        <ul>
+            <li> <a data-target="high-light-1" href="javascript:void(0);">外观</a> </li>
+            <li> <a data-target="high-light-2" href="javascript:void(0);">内饰</a> </li>
+        </ul>
+    </div>
+    <div id="high-lights-stage" class="stage" style="height: 693px;">
+        <div id="high-light-1" class="high-light-1 stage-wrapper">
+            <div class="list" role="toolbar">
+                <div class="item">
+                    <p style="left:63%; top:0%">环抱式宽体“X”前脸</p>
+                    <img src="../qirui5E/images/slick/环抱式宽体-x-前脸-分层1920x693.jpg" />
+                </div>
+                <div class="item">
+                    <p style="left:63%; top:0%">正前脸</p>
+                    <img src="../qirui5E/images/slick/艾瑞泽ex_正车头-a002z-2-1920x693.jpg" />
+                </div>
+                <div class="item">
+                    <p style="left:63%; top:0%">2:1运动美学比例车身</p>
+                    <img src="../qirui5E/images/slick/艾瑞泽ex_全侧-a002z1920x693.jpg" />
+                </div>
+                <div class="item">
+                    <p style="left:3%; top:0%">正车尾</p>
+                    <img src="../qirui5E/images/slick/艾瑞泽ex_正车尾-a002z-2-1920x693.jpg" />
+                </div>
+                <div class="item">
+                    <p style="left:3%; top:0%">点阵式钻石星辰前格栅</p>
+                    <img src="../qirui5E/images/slick/艾瑞泽ex_前格栅1920x693.jpg" />
+                </div>
+                <div class="item">
+                    <p style="left:70%; top:30%">16吋超大暴雪亮面轮辋</p>
+                    <img src="../qirui5E/images/slick/17吋超大暴雪亮面轮辋-1920x693.jpg" />
+                </div>
+                <div class="item">
+                    <p style="left:63%; top:0%">飞翼式日间行车灯</p>
+                    <img src="../qirui5E/images/slick/飞翼式日间行车灯1920x693.jpg" />
+                </div>
+            </div>
+        </div>
+
+        <div id="high-light-2" class="high-light-2 stage-wrapper shown">
+            <div class="list" role="toolbar">
+                <div class="item">
+                    <p style="left:56%; top:70%;">三屏环绕数字智慧驾驶座舱</p>
+                    <img src="../qirui5E/images/slick/三屏环绕数字智慧驾驶座舱1920x693.jpg" />
+                </div>
+                <div class="item">
+                    <p style="left:56%; top:70%;">非对称式未来之翼悬浮仪表台</p>
+                    <img src="../qirui5E/images/slick/非对称式未来之翼悬浮仪表台1920x693.jpg" />
+                </div>
+                <div class="item">
+                    <p style="left:76%; top:0%;">AI增强型自然语言交互</p>
+                    <img src="../qirui5E/images/slick/艾瑞泽ex_大内饰侧夜1920x693.jpg" />
+                </div>
+                <div class="item">
+                    <p style="left:76%; top:40%;">超级超大宽适驾乘空间</p>
+                    <img src="../qirui5E/images/slick/艾瑞泽ex_安全气囊-a002z-4-1920x693.jpg" />
+                </div>
+                <div class="item">
+                    <p style="left:66%; top:0%;">7吋智联多功能液晶仪表</p>
+                    <img src="../qirui5E/images/slick/7吋智联多功能液晶仪表1920x693.jpg" />
+                </div>
+                <div class="item">
+                    <p style="left:3%; top:30%;">多功能高质感方向盘</p>
+                    <img src="../qirui5E/images/slick/艾瑞泽ex_多功能高质感方向盘1920x693.jpg" />
+                </div>
+                <div class="item">
+                    <p style="left:56%; top:70%;">8吋视网膜级高清触控电容中控屏</p>
+                    <img src="../qirui5E/images/slick/8吋视网膜级高清触控电容中控屏1920x693.jpg" />
+                </div>
+                <div class="item">
+                    <p style="left:66%; top:0%;">悬浮式智慧空间中央控制区</p>
+                    <img src="../qirui5E/images/slick/悬浮式智慧空间中央控制区1920x693.jpg" />
+                </div>
+                <div class="item">
+                    <p style="left:6%; top:0%;">极光之弦贯穿式空调出风口设计</p>
+                    <img src="../qirui5E/images/slick/极光之弦贯穿式空调出风口设计1920x693.jpg" />
+                </div>
+                <div class="item">
+                    <p style="left:6%; top:0%;">后排空调出风口</p>
+                    <img src="../qirui5E/images/slick/艾瑞泽ex_空调出风口1920x693.jpg" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--配置概览-->
+<div id="page-5" class="configuration clearfix">
+    <div class="wrapper">
+        <h2>配置概览</h2>
+        <div id="nav-configuration" class="nav-bar">
+            <ul>
+                <li><a href="javascript:;" class="selected">基本参数</a></li>
+                <li><a href="javascript:;">变速箱</a></li>
+                <li><a href="javascript:;">底盘转向</a></li>
+                <li><a href="javascript:;">车轮制动</a></li>
+                <li><a href="javascript:;">安全装备</a></li>
+                <li><a href="javascript:;">外观</a></li>
+                <li><a href="javascript:;">舒适</a></li>
+                <li><a href="javascript:;">科技</a></li>
+                <li><a href="javascript:;">其他配置</a></li>
+            </ul>
+        </div>
+        <div class="configuration-table">
+            <div id="config-content" class="table-body">
+                <table class="config-table" style="width:100%">
+                    <!--基本参数-->
+                    <tbody>
+                        <tr>
+                            <th>NEDC综合工况续驶里程（km）</th>
+                            <td>401</td>
+                        </tr>
+                        <tr>
+                            <th>最大续驶里程（km）</th>
+                            <td>500</td>
+                        </tr>
+                        <tr>
+                            <th>电池能量（kWh）</th>
+                            <td>53.6</td>
+                        </tr>
+                        <tr>
+                            <th>快充时间（分钟）</th>
+                            <td>30</td>
+                        </tr>
+                        <tr>
+                            <th>慢充时间（小时）</th>
+                            <td>7-9</td>
+                        </tr>
+                        <tr>
+                            <th>最大功率（kW）</th>
+                            <td>90</td>
+                        </tr>
+                        <tr>
+                            <th>最大扭矩（N.m）</th>
+                            <td>250</td>
+                        </tr>
+                        <tr>
+                            <th>长*宽*高（mm）</th>
+                            <td>4572*1825*1496</td>
+                        </tr>
+                        <tr>
+                            <th>车身结构</th>
+                            <td>4门5座三厢车</td>
+                        </tr>
+                        <tr>
+                            <th>最高车速（kM/h）</th>
+                            <td>152</td>
+                        </tr>
+                        <tr>
+                            <th>加速性能（0-50km/h）s</th>
+                            <td>4.8</td>
+                        </tr>
+                        <tr>
+                            <th>轴距（mm）</th>
+                            <td>2670</td>
+                        </tr>
+                        <tr>
+                            <th>前轮距（mm）</th>
+                            <td>1556</td>
+                        </tr>
+                        <tr>
+                            <th>后轮距（mm） </th>
+                            <td>1542</td>
+                        </tr>
+                        <tr>
+                            <th>最小离地间隙（mm）</th>
+                            <td>121</td>
+                        </tr>
+                        <tr>
+                            <th>电动机</th>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <th>点击类型</th>
+                            <td>永磁/同步</td>
+                        </tr>
+                        <tr>
+                            <th>电动机总功率（kW）</th>
+                            <td>90</td>
+                        </tr>
+                        <tr>
+                            <th>电动机总扭矩（N.m）</th>
+                            <td>250</td>
+                        </tr>
+                        <tr>
+                            <th>前电动机最大功率（kW）</th>
+                            <td>90</td>
+                        </tr>
+                        <tr>
+                            <th>前电动机最大扭矩（N.m）</th>
+                            <td>250</td>
+                        </tr>
+                        <tr>
+                            <th>驱动电机数</th>
+                            <td>单电机</td>
+                        </tr>
+                        <tr>
+                            <th>电机布局</th>
+                            <td>前置</td>
+                        </tr>
+                        <tr>
+                            <th>电池类型</th>
+                            <td>三元锂电池</td>
+                        </tr>
+                    </tbody>
+                    <!--变速箱-->
+                    <tbody>
+                        <tr>
+                            <th>档位个数</th>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <th>变速箱类型</th>
+                            <td>固定齿比变速箱</td>
+                        </tr>
+                        <tr>
+                            <th>简称</th>
+                            <td>电动车单速变速箱</td>
+                        </tr>
+                    </tbody>
+                    <!--底盘转向-->
+                    <tbody>
+                        <tr>
+                            <th>驱动方式</th>
+                            <td>前置驱动</td>
+                        </tr>
+                        <tr>
+                            <th>前悬架类型</th>
+                            <td>麦弗逊式独立悬架</td>
+                        </tr>
+                        <tr>
+                            <th>后悬架类型</th>
+                            <td>扭力梁式非独立悬架</td>
+                        </tr>
+                        <tr>
+                            <th>助力类型</th>
+                            <td>电动助力</td>
+                        </tr>
+                        <tr>
+                            <th>车体结构</th>
+                            <td>承载式</td>
+                        </tr>
+                    </tbody>
+                    <!--车轮制动-->
+                    <tbody>
+                        <tr>
+                            <th>前制动器类型</th>
+                            <td>通风盘式</td>
+                        </tr>
+                        <tr>
+                            <th>后制动器类型</th>
+                            <td>盘式</td>
+                        </tr>
+                        <tr>
+                            <th>驻车制动类型</th>
+                            <td>电子驻车</td>
+                        </tr>
+                        <tr>
+                            <th>前轮胎规格</th>
+                            <td>205/55 R16</td>
+                        </tr>
+                        <tr>
+                            <th>后轮胎规格</th>
+                            <td>205/55 R16</td>
+                        </tr>
+                        <tr>
+                            <th>备胎规格</th>
+                            <td>非全尺寸</td>
+                        </tr>
+                    </tbody>
+                    <!--安全装备-->
+                    <tbody>
+                        <tr>
+                            <th><strong>主动安全</strong></th>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <th>ABS防抱死制动系统</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>EBD电子制动力分配系统</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>cESC车身稳定系统</th>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <th>ESP车身电子稳定系统</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>TCS牵引力控制系统</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>eHAC智能化坡道辅助系统</th>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <th>HAC智能化坡道辅助系统</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>TPMS数显胎压监测系统</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>EPB电子驻车系统</th>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <th>自动驻车</th>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <th>后视镜加热</th>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <th>高灵敏倒车雷达</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>儿童安全门锁</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>ISO FIX儿童座椅接口</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>LED高位制动灯</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>感应式自动落锁/解锁功能</th>
+                            <td>-</td>
+                        </tr>
+
+                        <tr>
+                            <th><strong>被动安全</strong></th>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <th>轻量化高强度车身</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>驾驶座安全气囊</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>副驾驶安全气囊</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>前排侧气囊</th>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <th>侧气帘</th>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <th>前排安全带高度可调</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>前排预紧式安全带</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>前排左右两根三点式安全带</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>后排左右两根三点式安全带</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>后排左侧三点式限力安全带</th>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <th>后排中间三点式安全带</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>车身防盗报警</th>
+                            <td>●</td>
+                        </tr>
+
+                        <tr>
+                            <th><strong>安全警示</strong></th>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <th>紧急制动频闪/转向优先</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>一键设置智能超速提醒</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>车门/后备箱未关提醒</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>驾驶员安全带未系提示</th>
+                            <td>●</td>
+                        </tr>
+                    </tbody>
+                    <!--外观-->
+                    <tbody>
+                        <tr>
+                            <th>牌照板（4.6米车长）</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>亮面铝合金轮毂</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>酷黑高亮钢琴烤漆格栅</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>投射式白眉熏黑光导前大灯</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>LED日间行车灯</th>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <th>飞翼式LED炫彩光导尾灯</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>间歇可调式博世无骨静音雨刮</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>双模式防夹电动天窗</th>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <th>外后视镜集成LED转向灯</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>前舱装饰罩</th>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <th>前舱下护板</th>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                    </tbody>
+                    <!--舒适-->
+                    <tbody>
+                        <tr>
+                            <th><strong>内饰</strong></th>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <th>内饰风格</th>
+                            <td>黑色</td>
+                        </tr>
+                        <tr>
+                            <th>人体工程学布座椅</th>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <th>人体工程学皮座椅</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>驾驶座椅手动调节</th>
+                            <td>6向</td>
+                        </tr>
+                        <tr>
+                            <th>副驾驶座椅手动调节</th>
+                            <td>4向</td>
+                        </tr>
+                        <tr>
+                            <th>前排座椅电加热</th>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <th>座椅头枕上下可调</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>前座中央扶手</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>炫酷液晶仪表</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>行李箱灯+前阅读灯+LED氛围灯</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>12V电源</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>行车记录仪接口</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>后排座椅整体放倒</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>后排中央扶手</th>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <th>PU方向盘</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>真皮运动+多功能方向盘</th>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <th>方向盘高度调节</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>旋钮换挡</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>顶棚PVC</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>副驾驶遮阳板化妆镜</th>
+                            <td>●</td>
+                        </tr>
+
+                        <tr>
+                            <th><strong>人性化</strong></th>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <th>一键启动</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>无钥匙进入</th>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <th>经济与运动模式自由切换</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>定速巡航</th>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <th>ACC自适应巡航</th>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <th>遥控钥匙</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>车内中控锁</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>智能自动空调</th>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <th>空调自清洁/自通风</th>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <th>PM2.5空气净化</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>EPS电动助力转向</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>四门电动车窗</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>主驾+四门一键升降</th>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <th>锁车自动升窗</th>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <th>车窗防夹手功能</th>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <th>电动调节外后视镜</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>外后视镜自动折叠</th>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <th>行李箱遥控电动开启</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>自动大灯</th>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <th>伴我回家功能</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>大灯高度电动可调</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>备胎</th>
+                            <td>●</td>
+                        </tr>
+                    </tbody>
+                    <!--科技-->
+                    <tbody>
+                        <tr>
+                            <th><strong>智能互联行车系统</strong></th>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <th>10寸中控台彩色大屏</th>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <th>全车全时极速4G Wifi热点</th>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <th>语音智能交互</th>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <th>GPS导航系统</th>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <th>可视倒车影像系统带动态辅助线</th>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <th>手机互联</th>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <th>蓝牙/车载电话</th>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <th>前排双USB接口（支持手机充电）</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>高保真扬声器</th>
+                            <td>4</td>
+                        </tr>
+
+                        <tr>
+                            <th><strong>智能远程控制系统</strong></th>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <th>车辆信息管理</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>远程开关空调</th>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <th>远程车门上锁/解锁</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>远程开启后备箱</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>预约充电时间</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>充电状态显示</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>充电开启/关闭</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>实时车况</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>车门状态</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>车辆定位</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>远程诊断</th>
+                            <td>●</td>
+                        </tr>
+                    </tbody>
+                    <!--其他配置-->
+                    <tbody>
+                        <tr>
+                            <th>蓄电池智能补电</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>充电可开启空调</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>慢充+快充装置</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>应急充电线</th>
+                            <td>○</td>
+                        </tr>
+                        <tr>
+                            <th>6.6KW慢充桩</th>
+                            <td>○</td>
+                        </tr>
+                        <tr>
+                            <th>电池温度控制系统</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>四档制动能量回收系统</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>计价器、空车灯、顶灯、广告屏等线束预留</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>计价器位置预留</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>后底板、门把手、后减震、铰链等部件加强</th>
+                            <td>●</td>
+                        </tr>
+                        <tr>
+                            <th>四档制动能量回收系统</th>
+                            <td>●</td>
+                        </tr>
+                </table>
+            </div>
+            <p class="note2">*注:*“●”表示必装、“○”表示可选装、“-”表示不装备；</p>
+            <p class="note2">* 车身颜色：星空蓝、俊逸白、魅影红、鎏光橙；</p>
+            <p class="note2">* 鉴于公司不断对汽车进行改型和改进，本公司保留车型技术参数、配置和选装件的变更或停用的权利，如有更改，请以官方公布的最新车型配置表为准。</p>
+        </div>
+    </div>
+</div>
+
+<!--gallery-->
+<div id="page-6" class="gallery">
+    <div id="gallery-stage" class="stage">
+        <div class="image-stage"><img src="../qirui5E/images/gallery/环抱式宽体-x-前脸-分层1920x693.jpg"></div>
+        <div class="list">
+            <ul id="gallery-list" class="gallery-list" data-jcarousel="true">
+                <li>
+                    <a data-type="image" data-url="../qirui5E/images/gallery/环抱式宽体-x-前脸-分层1920x693.jpg" href="javascript:void(0);">
+                        <img src="../qirui5E/images/gallery/环抱式宽体-x-前脸-分层1920x180.jpg">
+                    </a>
+                </li>
+                <li>
+                    <a data-type="image" data-url="../qirui5E/images/gallery/三屏环绕数字智慧驾驶座舱1920x693.jpg" href="javascript:void(0);">
+                        <img src="../qirui5E/images/gallery/三屏环绕数字智慧驾驶座舱268x180.jpg">
+                    </a>
+                </li>
+                <li>
+                    <a data-type="image" data-url="../qirui5E/images/gallery/非对称式未来之翼悬浮仪表台1920x693.jpg" href="javascript:void(0);">
+                        <img src="../qirui5E/images/gallery/非对称式未来之翼悬浮仪表台268x180.jpg">
+                    </a>
+                </li>
+                <li>
+                    <a data-type="image" data-url="../qirui5E/images/gallery/17吋超大暴雪亮面轮辋-1920x693.jpg" href="javascript:void(0);">
+                        <img src="../qirui5E/images/gallery/17吋超大暴雪亮面轮辋-268x180.jpg">
+                    </a>
+                </li>
+                <li>
+                    <a data-type="image" data-url="../qirui5E/images/gallery/飞翼式日间行车灯1920x693.jpg" href="javascript:void(0);">
+                        <img src="../qirui5E/images/gallery/飞翼式日间行车灯268x180.jpg">
+                    </a>
+                </li>
+                <li>
+                    <a data-type="image" data-url="../qirui5E/images/gallery/悬浮式智慧空间中央控制区1920x693.jpg" href="javascript:void(0);">
+                        <img src="../qirui5E/images/gallery/悬浮式智慧空间中央控制区268x180.jpg">
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script src="../qirui5E/js/hm.js"></script>
+    <script src="../qirui5E/js/jquery.js"></script>
+    <script src="../qirui5E/js/common.js"></script>
+    <script src="../qirui5E/js/slick.min.js"></script>
+    <script src="../qirui5E/js/ScrollMagic.min.js"></script>
+    <!--  <script src="./js/jquery-animateNumber.min.js"></script>  -->
+    <script src="../qirui5E/js/jquery.jcarousel.min.js"></script>
+    <script src="../qirui5E/js/pc.js"></script>
+}

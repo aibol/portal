@@ -1,0 +1,13 @@
+@charset "UTF-8";
+@font-face {
+	font-family: "Myriad Pro Bold Condensed";
+	src: 	url('../resources/fonts/myriadpro-blackcond.otf') format('opentype'),
+			url('../resources/fonts/myriadpro-blackcond.eot') format('embedded-opentype'),
+			url('../resources/fonts/myriadpro-blackcond.woff') format('woff'),
+			url('../resources/fonts/myriadpro-blackcond.ttf')  format('truetype'),
+			url('../resources/fonts/myriadpro-blackcond.svg') format('svg');
+}
+
+body{
+	font-family: "苹方", "PingFang SC", "Microsoft YaHei", "MicrosoftJhengHei", "华文细黑", "STHeiti", "MingLiu";
+}

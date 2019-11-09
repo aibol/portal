@@ -1,0 +1,80 @@
+.cover{
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+
+	background-color: #ffffff;
+	z-index: 999;
+}
+.close{
+	width: 18px;
+	height: 18px;
+	padding: 2px;
+	display: inline-block;
+	font-size: 0;
+}
+.close svg{
+	fill: #7f7f7f;
+}
+.law{
+    font-size: 14px;
+    color: #000;
+	display: none;
+}
+.law .close{
+	position: absolute;
+	right: 40px;
+	top: 80px;
+}
+.law .content{
+	width: 850px;
+	margin: 0 auto;
+	margin-top: 80px;
+	display: block!important;
+}
+.law h4{
+	font-size: 24px;
+	text-align: center;
+}
+.law p.note,
+.law p.date{
+	font-size: 12px;
+}
+.law p.date{
+	margin-top: -12px;
+}
+.law hr{
+    background-color: #c6001f;
+	height: 2px;
+	margin: 0 0 12px 0;
+}
+.law .law-content{
+	width: 100%;
+
+	height: 300px;
+
+	overflow-x: hidden;
+	overflow-y: auto;
+
+    line-height: 28px;
+}
+.law .law-content ol{
+	padding-left: 1em;
+}
+.law .law-content ol li{
+	list-style: none;
+}
+.law .law-content h5{
+    color: #c6001f;
+    font-size: 16px;
+    margin-top: 30px;
+}
+.law .law-content h6{
+	font-size: 14px;
+	margin-top: 18px;
+}
+.law .law-content h5 + h6{
+	margin-top: 0;
+}
