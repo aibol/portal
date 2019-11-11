@@ -92,5 +92,10 @@ namespace Portal.Controllers
         {
             return View();
         }
+
+        public IActionResult XundaoInstall()
+        {
+            return View();
+        }
     }
 }
