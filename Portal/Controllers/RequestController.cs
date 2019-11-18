@@ -18,8 +18,17 @@ namespace Portal.Controllers
         /// <param name="request">需求内容</param>
         /// <returns></returns>
         [HttpPost]
-        public IActionResult Index(string name, string contact, string request)
+        public IActionResult Index()
         {
+            var form = HttpContext.Request.Form;
+            var name = form["name"];
+            var contact = form["contact"];
+            var request = form["request"];
+            if (string.IsNullOrWhiteSpace(name) || 
+                string.IsNullOrWhiteSpace(contact) ||
+                string.IsNullOrWhiteSpace(request))
+                return BadRequest("name/contact/request are required");
+
             var msg = new MailMessage();
             msg.To.Add("cym@aibol.com");
 
