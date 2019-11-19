@@ -31,7 +31,7 @@
                                 html += '<a href="javascript:;" onclick="changeItem($(this))" class="item ' + (itemId == node.id ? 'active' : '') + '" id="' + node.id + '">' + node.name + '</a>';
                             }
                         });
-                        html += '<a href="javascript:;" onclick="changeItem($(this))" class="item ' + (itemId == 'apply-to-sft-driver' ? 'active' : '') + '" id="apply-to-sft-driver">申请成为顺风司机</a>';
+                        //html += '<a href="javascript:;" onclick="changeItem($(this))" class="item ' + (itemId == 'apply-to-sft-driver' ? 'active' : '') + '" id="apply-to-sft-driver">申请成为顺风司机</a>';
                         $("#category").html(html);
 
                         changeItem($("#" + itemId));
@@ -45,13 +45,13 @@
             //文章列表点击切换文章内容
             changeItem = function (obj) {
                 var id = obj.attr("id");
-                if (id == "apply-to-sft-driver") {//申请成为顺风司机--显示表单
-                    $("#form").show();
-                    $("#article").hide();
-                    $("#category a.active").removeClass("active");
-                    $("#" + obj.attr("id")).addClass("active");
-                }
-                else {//其他--显示后台维护的文章
+                //if (id == "apply-to-sft-driver") {//申请成为顺风司机--显示表单
+                //    $("#form").show();
+                //    $("#article").hide();
+                //    $("#category a.active").removeClass("active");
+                //    $("#" + obj.attr("id")).addClass("active");
+                //}
+                //else {//其他--显示后台维护的文章
                     $("#form").hide();
                     $("#article").show();
                     
@@ -66,7 +66,7 @@
                             $("#" + obj.attr("id")).addClass("active");
                         }
                     });
-                }
+                //}
             }
 
             //获取url参数(返回对象)
@@ -104,14 +104,11 @@
         </div>
 
         <!--正文: 文章内容-->
-        <div class="col-md-9 solution-article" id="article" style="display:none">
+        <div class="col-md-9 solution-article" id="article">
         </div>
-        <div class="col-md-9 solution-article" id="form">
+        @*<div class="col-md-9 solution-article" id="form">
             <h1>申请成为顺风司机</h1>
             <form role="form" method="post" class="f-s-14 m-t-30">
-                @*@Html.ValidationSummary()*@
-                @*<input type="hidden" name="openid" value="@ViewBag.OpenId" />*@
-
                 <!--用户个人信息-->
                 <div class="box baseinfo">
                     <div class="input-wrap">
@@ -198,6 +195,6 @@
                     <button type="submit" class="btn btn-theme">成为顺风司机</button>
                 </div>
             </form>
-        </div>
+        </div>*@
     </div>
 </div>
